@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZamAgriLink - Premium Meat Marketplace</title>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #f5f5f5;
+            font-size: 16px;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        body.light-mode .top-header {
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.light-mode a {
+            color: #1a1a1a;
+        }
+
+        body.light-mode .main-menu a:hover {
+            color: #e54c00;
+        }
+
+        body.light-mode .desktop-info {
+            color: #666;
+        }
+
+        body.light-mode .contact-info button {
+            color: #1a1a1a;
+            border: 1px solid #1a1a1a;
+        }
+
+        body.light-mode .hero-text p {
+            color: #555;
+        }
+
+        body.light-mode .hero-section {
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.light-mode .product-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+        }
+
+        body.light-mode .card-image-container {
+            background-color: #f0f0f0;
+        }
+
+        body.light-mode .product-card-content h3 {
+            color: #1a1a1a;
+        }
+
+        body.light-mode .product-card-content p.description {
+            color: #666;
+        }
+
+        body.light-mode .view-menu-full-btn {
+            color: #1a1a1a;
+            border: 1px solid #1a1a1a;
+        }
+
+        body.light-mode .modal-content {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            border: 2px solid #e54c00;
+        }
+
+        body.light-mode .cart-item {
+            border-bottom: 1px dashed #ddd;
+        }
+
+        body.light-mode .qty-btn {
+            background-color: #f0f0f0;
+            color: #1a1a1a;
+        }
+
+        body.light-mode .remove-btn {
+            background-color: #ddd;
+            color: #1a1a1a;
+        }
+
+        body.light-mode .main-footer {
+            background-color: #e8e8e8;
+            color: #333;
+        }
+
+        body.light-mode .footer-block p,
+        body.light-mode .footer-block li {
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #f5f5f5;
+        }
+
+        .main-menu a:hover, .social-links span:hover {
+            color: #e54c00;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .top-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .desktop-info {
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            gap: 15px;
+        }
+
+        .main-menu {
+            display: flex;
+            gap: 30px;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .restaurant-title {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-info .phone {
+            font-weight: bold;
+            color: #f5f5f5;
+        }
+
+        .contact-info button {
+            background-color: transparent;
+            color: #f5f5f5;
+            border: 1px solid #f5f5f5;
+            padding: 8px 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle {
+            background-color: transparent;
+            border: 1px solid #f5f5f5;
+            color: #f5f5f5;
+            padding: 8px 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 13px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: #e54c00;
+            border-color: #e54c00;
+        }
+
+        body.light-mode .theme-toggle {
+            border: 1px solid #1a1a1a;
+            color: #1a1a1a;
+        }
+
+        body.light-mode .theme-toggle:hover {
+            background-color: #e54c00;
+            border-color: #e54c00;
+            color: #f5f5f5;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e54c00;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .hero-section {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #333;
+        }
+
+        .hero-text h1 {
+            font-size: 72px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: #aaa;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text .menu-btn {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 25px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 40px;
+        }
+
+        .social-links span {
+            border: 1px solid #f5f5f5;
+            padding: 10px 15px;
+            margin-right: 10px;
+            text-transform: uppercase;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .hero-image-container {
+            position: relative;
+            height: 500px;
+            background-color: #333;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .reserve-table-btn {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: transparent;
+            color: #f5f5f5;
+            border: 1px solid #f5f5f5;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .popular-dishes {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px 0;
+        }
+
+        .dishes-title {
+            font-size: 32px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #e54c00;
+        }
+
+        .product-grid {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .product-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-card {
+            background-color: #252525;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 280px;
+            flex-shrink: 0;
+            text-align: left;
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 200px;
+            background-color: #333;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card-content {
+            padding: 15px;
+        }
+
+        .product-card-content h3 {
+            font-size: 18px;
+            color: #f5f5f5;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+        }
+
+        .product-card-content p.description {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 15px;
+            min-height: 30px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-footer-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-footer .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e54c00;
+        }
+
+        .add-to-cart {
+            background-color: #e54c00;
+            color: #f5f5f5;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #c74000;
+        }
+
+        .add-to-cart:active {
+            transform: scale(0.95);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        .dot {
+            height: 8px;
+            width: 8px;
+            background-color: #444;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot.active {
+            background-color: #e54c00;
+        }
+
+        .view-menu-full-btn {
+            display: block;
+            width: 250px;
+            margin: 40px auto 60px auto;
+            background-color: transparent;
+            color: #f5f5f5;
+            border: 1px solid #f5f5f5;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 101;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #252525;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 8px;
+            color: #f5f5f5;
+            border: 2px solid #e54c00;
+        }
+
+        .modal h3 {
+            color: #e54c00;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px dashed #444;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            background-color: #333;
+            color: #f5f5f5;
+            border: none;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .qty-btn:hover {
+            background-color: #e54c00;
+        }
+
+        .remove-btn {
+            background-color: #666;
+            color: #f5f5f5;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .remove-btn:hover {
+            background-color: #c74000;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-top: 2px solid #555;
+            padding-top: 15px;
+        }
+
+        .btn {
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background-color: #e54c00;
+            color: #f5f5f5;
+        }
+
+        .btn-primary:hover {
+            background-color: #c74000;
+        }
+
+        .btn-secondary {
+            background-color: #666;
+            color: #f5f5f5;
+        }
+
+        .btn-secondary:hover {
+            background-color: #555;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #aaa;
+            padding: 40px 0;
+            font-size: 18px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #e54c00;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .top-header {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .desktop-info {
+                display: none;
+            }
+
+            .main-menu {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
+                font-size: 13px;
+            }
+
+            .restaurant-title {
+                font-size: 22px;
+                order: 1;
+            }
+
+            .contact-info {
+                order: 2;
+                gap: 10px;
+            }
+
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 48px;
+            }
+
+            .hero-image-container {
+                height: 300px;
+            }
+
+            .popular-dishes, .view-menu-full-btn {
+                padding: 0 20px;
+                max-width: 100%;
+            }
+
+            .dishes-title {
+                font-size: 24px;
+            }
+        }
+
+        .main-footer {
+            background-color: #0d0d0d;
+            padding: 40px 20px;
+            color: #ccc;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-block {
+            flex: 1 1 200px;
+        }
+
+        .footer-block h4 {
+            color: #e54c00;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer-block p, .footer-block li {
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer-block a:hover {
+            color: #f5f5f5;
+        }
+
+        @media (max-width: 900px) {
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <div class="desktop-info">
+            <span>ZamAgriLink</span>
+        </div>
+        
+        <div class="main-menu">
+            <a href="#">MENU</a>
+            <a href="#">ABOUT US</a>
+            <a href="#">DELIVERY</a>
+            <a href="#">CONTACTS</a>
+        </div>
+        
+        <div class="restaurant-title">
+            ZamAgriLink
+        </div>
+
+        <div class="contact-info">
+            <span class="phone">+260</span>
+            <button>BOOK</button>
+            <button class="theme-toggle" id="themeToggle">🌙 DARK</button>
+            <div class="cart-icon" id="cartIcon">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+
+        <div class="desktop-info">
+            <span>03</span>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-text">
+            <h1>JUICY MEAT</h1>
+            <p>Our marketplace offers a wide range of premium quality meats from trusted suppliers across Africa!</p>
+            <button class="menu-btn">VIEW MENU</button>
+            <div class="social-links">
+                <span>IN</span>
+                <span>FB</span>
+                <span>TA</span>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="hero-image" id="rotatingHeroImage"></div>
+            <button class="reserve-table-btn">TYPES OF MEAT</button> 
+        </div>
+    </section>
+
+    <main class="popular-dishes">
+        <h2 class="dishes-title">POPULAR PRODUCTS</h2>
+
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <div class="card-image-container">
+                    <img src="images/beef.jpg" alt="Beef">
+                </div>
+                <div class="product-card-content">
+                    <h3>Premium Beef</h3>
+                    <p class="description">High quality beef cuts</p>
+                    <div class="product-footer">
+                        <span>200g</span>
+                        <div class="product-footer-actions">
+                            <span class="price" data-price="70">$70</span>
+                            <button class="add-to-cart">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image-container">
+                    <img src=" images/goat meat.jpg" alt="Goat Meat">
+                </div>
+                <div class="product-card-content">
+                    <h3>Goat Meat</h3>
+                    <p class="description">Quality goat meat</p>
+                    <div class="product-footer">
+                        <span>230g</span>
+                        <div class="product-footer-actions">
+                            <span class="price" data-price="130">$130</span>
+                            <button class="add-to-cart">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image-container">
+                    <img src=" images/sheep meat.jpg" alt="Sheep Meat">
+                </div>
+                <div class="product-card-content">
+                    <h3>Sheep Meat</h3>
+                    <p class="description">Quality sheep meat</p>
+                    <div class="product-footer">
+                        <span>190g</span>
+                        <div class="product-footer-actions">
+                            <span class="price" data-price="145">$145</span>
+                            <button class="add-to-cart">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image-container">
+                    <img src="images/sheep meat.jpg" alt="Poultry">
+                </div>
+                <div class="product-card-content">
+                    <h3>Poultry Meat</h3>
+                    <p class="description">Fresh poultry meat</p>
+                    <div class="product-footer">
+                        <span>250g</span>
+                        <div class="product-footer-actions">
+                            <span class="price" data-price="125">$125</span>
+                            <button class="add-to-cart">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pagination">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <button class="view-menu-full-btn">VIEW FULL MENU</button>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <h3>Your Shopping Cart</h3>
+            <div id="cartContent"></div>
+            <div class="cart-total">
+                <span>TOTAL:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn btn-primary" id="checkoutBtn">Proceed to Checkout</button>
+            <button class="btn btn-secondary" id="closeCartBtn">Continue Shopping</button>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-block">
+                <h4>ZamAgriLink</h4>
+                <p>Digital E-Commerce Export Management System</p>
+                <p>&copy; 2025 ZamAgriLink. All rights reserved.</p>
+            </div>
+            <div class="footer-block">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Marketplace</a></li>
+                    <li><a href="#">Export Certification</a></li>
+                    <li><a href="#">Logistics Tracking</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-block">
+                <h4>Contact & Legal</h4>
+                <ul>
+                    <li><span class="phone">+260 971 000 000</span></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-block">
+                <h4>Operating Hours</h4>
+                <p>Mon - Fri: 11:00 AM - 10:00 PM</p>
+                <p>Sat - Sun: 12:00 PM - 11:00 PM</p>
+                <p>Lusaka, Zambia</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart management using in-memory storage
+        let cart = [];
+
+        // DOM Elements
+        const cartIcon = document.getElementById('cartIcon');
+        const cartCount = document.getElementById('cartCount');
+        const cartModal = document.getElementById('cartModal');
+        const cartContent = document.getElementById('cartContent');
+        const cartTotal = document.getElementById('cartTotal');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const themeToggle = document.getElementById('themeToggle');
+
+        // Theme Management
+        let isDarkMode = true;
+
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('light-mode');
+            
+            if (isDarkMode) {
+                themeToggle.innerHTML = '🌙 DARK';
+            } else {
+                themeToggle.innerHTML = '☀️ LIGHT';
+            }
+        });
+
+        // Update cart count display
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }
+
+        // Add item to cart
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            
+            updateCartCount();
+            showNotification(`${name} added to cart!`);
+        }
+
+        // Remove item from cart
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartCount();
+            renderCart();
+        }
+
+        // Update item quantity
+        function updateQuantity(name, change) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(name);
+                } else {
+                    updateCartCount();
+                    renderCart();
+                }
+            }
+        }
+
+        // Render cart contents
+        function renderCart() {
+            cartContent.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                cartTotal.textContent = '$0.00';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div style="color: #aaa; font-size: 14px;">$${item.price} each</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="updateQuantity('${item.name}', -1)">−</button>
+                        <span style="color: #e54c00; font-weight: bold; min-width: 30px; text-align: center;">${item.quantity}</span>
+                        <button class="qty-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                        <span style="color: #f5f5f5; margin: 0 10px;">$${itemTotal.toFixed(2)}</span>
+                        <button class="remove-btn" onclick="removeFromCart('${item.name}')">Remove</button>
+                    </div>
+                `;
+                cartContent.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Event Listeners
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = button.closest('.product-card');
+                const name = card.querySelector('h3').textContent.trim();
+                const priceElement = card.querySelector('.price');
+                const price = parseFloat(priceElement.getAttribute('data-price'));
+                
+                addToCart(name, price);
+            });
+        });
+
+        cartIcon.addEventListener('click', () => {
+            renderCart();
+            cartModal.style.display = 'block';
+        });
+
+        closeCartBtn.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            showNotification('Checkout feature coming soon!');
+            // Here you would implement actual checkout logic
+        });
+
+        // Close modal when clicking outside
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+
+        // Make functions available globally for onclick handlers
+        window.updateQuantity = updateQuantity;
+        window.removeFromCart = removeFromCart;
+
+        // Hero image rotation with 4 images
+        const heroImages = [
+            "url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=800&h=600&fit=crop')", // Beef cuts
+            "url('images/ec1636d65c2536959bf54215935b60ef.jpg')", // Meat with oil
+            "url('https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?w=800&h=600&fit=crop')", // Raw meat cuts
+            "url('https://images.unsplash.com/photo-1588168333986-c93a8b0b9d69?w=800&h=600&fit=crop')"  // Premium steaks
+        ];
+        
+        let currentImageIndex = 0;
+        const heroImage = document.getElementById('rotatingHeroImage');
+        
+        function rotateHeroImage() {
+            heroImage.style.backgroundImage = heroImages[currentImageIndex];
+            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+        }
+        
+        rotateHeroImage();
+        setInterval(rotateHeroImage, 3000);
+
+        // Initialize cart count on load
+        updateCartCount();
+    </script>
+
+</body>
+</html>
