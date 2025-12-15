@@ -321,6 +321,8 @@
 
         .product-grid {
             display: flex;
+            /* **MODIFIED**: Added nowrap to force horizontal layout */
+            flex-wrap: nowrap; 
             overflow-x: auto;
             gap: 20px;
             padding: 10px 0;
@@ -822,7 +824,6 @@
         <button class="view-menu-full-btn">VIEW FULL MENU</button>
     </main>
 
-    <!-- Cart Modal -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
             <h3>Your Shopping Cart</h3>
