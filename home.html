@@ -320,17 +320,43 @@
         }
 
         .product-grid {
+            /* Keep original flex and gap from previous change */
             display: flex;
-            /* **MODIFIED**: Added nowrap to force horizontal layout */
-            flex-wrap: nowrap; 
-            overflow-x: auto;
-            gap: 20px;
+            flex-wrap: nowrap;
+            
+            /* Hides the content that scrolls out of view */
+            overflow: hidden; 
+            
+            /* Keep scrollbar hidden styles */
             padding: 10px 0;
             -ms-overflow-style: none;
             scrollbar-width: none;
+            
+            /* Remove the gap on product-grid, it will be on marquee-wrapper */
+            gap: 0;
         }
         .product-grid::-webkit-scrollbar {
             display: none;
+        }
+        
+        .marquee-wrapper {
+            display: flex;
+            /* Combine all products into a single, massive row */
+            flex-wrap: nowrap;
+            gap: 20px; /* Gap between product cards */
+            
+            /* Animation properties (30s is a moderate speed) */
+            animation: marquee 30s linear infinite; 
+            will-change: transform; 
+        }
+
+        /* Based on .product-card width: 280px and gap: 20px
+           Width to move for 4 cards + 4 gaps (3 between, 1 at the end): 1200px.
+        */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            /* Move exactly the width of the original set of products from right to left */
+            100% { transform: translateX(-1200px); } 
         }
 
         .product-card {
@@ -745,6 +771,7 @@
 
         <div class="product-grid">
             
+        <div class="marquee-wrapper">
             <div class="product-card">
                 <div class="card-image-container">
                     <img src="images/beef.jpg" alt="Beef">
@@ -812,6 +839,74 @@
                     </div>
                 </div>
             </div>
+            <div class="product-card">
+                <div class="card-image-container">
+                    <img src="images/beef.jpg" alt="Beef">
+                </div>
+                <div class="product-card-content">
+                    <h3>Premium Beef</h3>
+                    <p class="description">High quality beef cuts</p>
+                    <div class="product-footer">
+                        <span>200g</span>
+                        <div class="product-footer-actions">
+                            <span class="price" data-price="70">$70</span>
+                            <button class="add-to-cart">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image-container">
+                    <img src=" images/goat meat.jpg" alt="Goat Meat">
+                </div>
+                <div class="product-card-content">
+                    <h3>Goat Meat</h3>
+                    <p class="description">Quality goat meat</p>
+                    <div class="product-footer">
+                        <span>230g</span>
+                        <div class="product-footer-actions">
+                            <span class="price" data-price="130">$130</span>
+                            <button class="add-to-cart">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image-container">
+                    <img src=" images/sheep meat.jpg" alt="Sheep Meat">
+                </div>
+                <div class="product-card-content">
+                    <h3>Sheep Meat</h3>
+                    <p class="description">Quality sheep meat</p>
+                    <div class="product-footer">
+                        <span>190g</span>
+                        <div class="product-footer-actions">
+                            <span class="price" data-price="145">$145</span>
+                            <button class="add-to-cart">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-image-container">
+                    <img src="images/sheep meat.jpg" alt="Poultry">
+                </div>
+                <div class="product-card-content">
+                    <h3>Poultry Meat</h3>
+                    <p class="description">Fresh poultry meat</p>
+                    <div class="product-footer">
+                        <span>250g</span>
+                        <div class="product-footer-actions">
+                            <span class="price" data-price="125">$125</span>
+                            <button class="add-to-cart">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         </div>
 
